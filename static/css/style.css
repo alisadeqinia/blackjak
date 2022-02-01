@@ -96,3 +96,18 @@ th, td {
     border-collapse: collapse;
     text-align: center;
 }
+
+@media screen and (max-width: 600px) {
+    #playerBox img {
+        width: 50px;
+        height: 75px;
+        border: 1px solid gray;
+        border-radius: 15px;
+    }
+    #botBox img {
+        width: 50px;
+        height: 75px;
+        border: 1px solid gray;
+        border-radius: 15px;
+    }
+}
