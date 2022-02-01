@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/style.css">
+    <title>BlackJak Challenge</title>
+</head>
+<body>
+    <div class="gameTable">
+        <h1>بازی مهیج بلک جک</h1>
+        <h2>نتیجه این دست: <span  id="status">نامشخص</span></h2>
+        <div class="box">
+            <h3>امتیاز دست شما: <span id="playerSum">0</span></h3>
+            <div id="playerBox"></div>
+        </div>
+        <div class="box">
+            <h3>امتیاز دست حریف: <span id="botSum">0</span></h3>
+            <div id="botBox"></div>
+        </div>
+        <div class="bottomBox">
+            <div id="btns">
+                <button id="hit" onclick="hit()" style="background-color: rgb(209, 212, 13);">دریافت کارت</button>
+                <button id="stand" onclick="stand()" style="background-color: rgb(13, 116, 212);">دیدن دست</button>
+                <button id="deal" onclick="deal()" style="background-color: red;">تقسیم کارت</button>
+                <button id="newGame" onclick="reset()" style="background-color: rgb(31, 1, 1);">بازی جدید</button>
+            </div>
+            <div id="scores">
+                <table>
+                    <tr>
+                        <th>برد</th>
+                        <th>باخت</th>
+                        <th>تساوی</th>
+                    </tr>
+                    <tr>
+                        <td id="win">0</td>
+                        <td id="lose">0</td>
+                        <td id="draw">0</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/js/script.js"></script>
+</body>
+</html>

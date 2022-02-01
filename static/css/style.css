@@ -1,0 +1,98 @@
+* {
+    box-sizing: border-box;
+    font-family: 'B Titr', Arial, Helvetica, sans-serif;
+    color: white;
+}
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url(../image/Oasis-Poker-Classic-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+h1, h2, h3 {
+    text-align: center;
+    margin: 0;
+}
+.gameTable {
+    overflow: auto;
+    width: 98vw;
+    height: 98vh;
+    margin: 0 auto;
+    padding: 0;
+}
+#status {
+    text-align: center;
+    margin: 0;
+}
+.box {
+    width: 48%;
+    height: 25rem;
+    margin: 10px 1%;
+    border: 1px solid white;
+    float: left;
+}
+#botBox, #playerBox {
+    width: 98%;
+    margin: 5px auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    overflow: auto;
+}
+#playerBox img {
+    width: 100px;
+    height: 150px;
+    border: 1px solid gray;
+    border-radius: 15px;
+}
+#botBox img {
+    width: 100px;
+    height: 150px;
+    border: 1px solid gray;
+    border-radius: 15px;
+}
+.bottomBox {
+    width: 100%;
+    display: flex;
+    clear: left;
+    justify-content: space-around;
+}
+#btns {
+    width: 40%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+#btns button {
+    color: black;
+    font-size: 20px;
+    width: 123px;
+    height: 50px;
+    margin: 5px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+#btns button:hover {
+    border: 2px solid white;
+}
+#btns button:active {
+    transform: translateY(2px);
+}
+#scores {
+    width: 40%;
+}
+table {
+    border: 1px solid white;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+th, td {
+    padding: 10px;
+    width: 100px;
+    border: 1px solid white;
+    border-collapse: collapse;
+    text-align: center;
+}
