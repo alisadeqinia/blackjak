@@ -124,7 +124,7 @@ function hit() {
             break;
     }
     // Show player situation in current round.
-    if (playerSum <= 21) {
+    if (playerSum <= 21 && typeof playerSum !== "string") {
         playerSumBox.innerHTML = playerSum;
     }else {
         playerSum = "بیشتر شد";
@@ -174,7 +174,7 @@ function stand() {
     if (botSum === playerSum) {
         drawBox.innerHTML = draw();
         statusBox.innerHTML = "مساوی شدید"
-    }else if (botSum < playerSum) {
+    }else if (botSum < playerSum || typeof botSum === "string") {
         winBox.innerHTML = win();
         statusBox.innerHTML = "شما بردی"
         statusBox.style.color = 'aqua';
@@ -215,5 +215,3 @@ function reset() {
     lose = makeCounter();
     draw = makeCounter();
 }
-
-
