@@ -93,99 +93,105 @@ var lose = makeCounter();
 
 // Define hit function to choose how pick and show a card and calculate player score.
 function hit() {
-    // Pick card.
-    let cardNo = Math.floor(Math.random()*13)+1;
-    // Choose card classes.
-    let cardClass = Math.floor(Math.random()*4);
-    // Find picked card's src image address.
-    let card = cards[cardClass][cardNo];
-    // Show card image.
-    let cardImage = document.createElement('img');
-    cardImage.src = card;
-    playerBox.appendChild(cardImage);
-    // Score calculation and determine player situation.
-    switch (cardNo) {
-        case 1:
-            if (playerSum >= 11) {
-                playerSum += 1;
-            }else {
-                playerSum += 11;
-            break;
-            }
-        case 2: case 3: case 4: case 5: case 6: case 7: case 8:
-        case 9:
-            playerSum += cardNo;
-            break;
-        case 10: case 11: case 12:
-        case 13:
-            playerSum += 10;
-            break;
-        case "بیشتر شد":
-            break;
+    // Lock button if your turn is over with false state of this if statement.
+    if (botBox.innerHTML === "" && typeof playerSum !== "string"){
+        // Pick card.
+        let cardNo = Math.floor(Math.random()*13)+1;
+        // Choose card classes.
+        let cardClass = Math.floor(Math.random()*4);
+        // Find picked card's src image address.
+        let card = cards[cardClass][cardNo];
+        // Show card image.
+        let cardImage = document.createElement('img');
+        cardImage.src = card;
+        playerBox.appendChild(cardImage);
+        // Score calculation and determine player situation.
+        switch (cardNo) {
+            case 1:
+                if (playerSum >= 11) {
+                    playerSum += 1;
+                }else {
+                    playerSum += 11;
+                break;
+                }
+            case 2: case 3: case 4: case 5: case 6: case 7: case 8:
+            case 9:
+                playerSum += cardNo;
+                break;
+            case 10: case 11: case 12:
+            case 13:
+                playerSum += 10;
+                break;
+            case "بیشتر شد":
+                break;
+        }
+        // Show player situation in current round.
+        if (playerSum <= 21 && typeof playerSum !== "string") {
+            playerSumBox.innerHTML = playerSum;
+        }else {
+            playerSum = "بیشتر شد";
+            playerSumBox.innerHTML = playerSum;
+            playerSumBox.style.color = "red";
+        }
+        const hitSound = new Audio("static/sounds/swish.m4a");
+        hitSound.play();
     }
-    // Show player situation in current round.
-    if (playerSum <= 21 && typeof playerSum !== "string") {
-        playerSumBox.innerHTML = playerSum;
-    }else {
-        playerSum = "بیشتر شد";
-        playerSumBox.innerHTML = playerSum;
-        playerSumBox.style.color = "red";
-    }
-    const hitSound = new Audio("static/sounds/swish.m4a");
-    hitSound.play();
 }
 
 
 // With Stand function bot runs to play.
 function stand() {
-    // it's 15 to prevent BUST bot every time. with change this number botAI decision will be change.
-    while (botSum <= 15) {
-        let cardNo = Math.floor(Math.random()*13)+1;
-        let cardClass = Math.floor(Math.random()*4);
-        let card = cards[cardClass][cardNo];
-        let cardImage = document.createElement('img');
-        cardImage.src = card;
-        botBox.appendChild(cardImage);
-        switch (cardNo) {
-            case 1:
-                if (botSum >= 11) {
-                    botSum += 1;
-                }else {
-                    botSum += 11;
-                break;
-                }
-            case 2: case 3: case 4: case 5: case 6: case 7: case 8:
-            case 9:
-                botSum += cardNo;
-                break;
-            case 10: case 11: case 12:
-            case 13:
-                botSum += 10;
-                break;
+    // Lock button if bot turn is over with false state of this if statement.
+    if (botBox.innerHTML === "") {
+        // it's 15 to prevent BUST bot every time. with change this number botAI decision will be change.
+        while (botSum <= 15) {
+            let cardNo = Math.floor(Math.random()*13)+1;
+            let cardClass = Math.floor(Math.random()*4);
+            let card = cards[cardClass][cardNo];
+            let cardImage = document.createElement('img');
+            cardImage.src = card;
+            botBox.appendChild(cardImage);
+            switch (cardNo) {
+                case 1:
+                    if (botSum >= 11) {
+                        botSum += 1;
+                    }else {
+                        botSum += 11;
+                    break;
+                    }
+                case 2: case 3: case 4: case 5: case 6: case 7: case 8:
+                case 9:
+                    botSum += cardNo;
+                    break;
+                case 10: case 11: case 12:
+                case 13:
+                    botSum += 10;
+                    break;
+            }
         }
-    }
-    // Show bot situation in current round.
-    if (botSum > 21) {
-        botSum = "بیشتر شد";
-        botSumBox.style.color = 'red';
-    }
-    botSumBox.innerHTML = botSum;
-    // Decide who wins and add result in table.
-    if (botSum === playerSum) {
-        drawBox.innerHTML = draw();
-        statusBox.innerHTML = "مساوی شدید"
-    }else if (botSum < playerSum || typeof botSum === "string") {
-        winBox.innerHTML = win();
-        statusBox.innerHTML = "شما بردی"
-        statusBox.style.color = 'aqua';
-        const winSound = new Audio("static/sounds/cash.mp3");
-        winSound.play();
-    }else {
-        loseBox.innerHTML = lose();
-        statusBox.innerHTML = "شما باختی"
-        statusBox.style.color = 'red';
-        const loseSound = new Audio("static/sounds/aww.mp3");
-        loseSound.play();
+        // Show bot situation in current round.
+        if (botSum > 21) {
+            botSum = "بیشتر شد";
+            botSumBox.style.color = 'red';
+        }
+        botSumBox.innerHTML = botSum;
+        // Decide who wins and add result in table.
+        if (botSum === playerSum) {
+            drawBox.innerHTML = draw();
+            statusBox.innerHTML = "مساوی شدید"
+        }else if (botSum < playerSum || typeof botSum === "string") {
+            winBox.innerHTML = win();
+            statusBox.innerHTML = "شما بردی"
+            statusBox.style.color = 'aqua';
+            const winSound = new Audio("static/sounds/cash.mp3");
+            winSound.play();
+        }else {
+            loseBox.innerHTML = lose();
+            statusBox.innerHTML = "شما باختی"
+            statusBox.style.color = 'red';
+            const loseSound = new Audio("static/sounds/aww.mp3");
+            loseSound.play();
+        }
     }
 }
 
