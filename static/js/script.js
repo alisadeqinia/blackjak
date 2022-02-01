@@ -106,7 +106,7 @@ function hit() {
     // Score calculation and determine player situation.
     switch (cardNo) {
         case 1:
-            if (playerSum > 11) {
+            if (playerSum >= 11) {
                 playerSum += 1;
             }else {
                 playerSum += 11;
@@ -148,7 +148,7 @@ function stand() {
         botBox.appendChild(cardImage);
         switch (cardNo) {
             case 1:
-                if (botSum > 11) {
+                if (botSum >= 11) {
                     botSum += 1;
                 }else {
                     botSum += 11;
