@@ -1,5 +1,10 @@
+/* blackJak game scripts
+write by AliSadeqinia */
+
+// Define global vars for each round scores
 var playerSum = 0;
 var botSum = 0;
+// Define card objects to pick cards randomly
 let cards = [
     {
         1:"static/image/clubs/1.jpg",
@@ -62,6 +67,7 @@ let cards = [
         13:"static/image/spades/k.jpg",
     }
 ];
+// Get HTML element first in order to reduce requests
 let playerSumBox = document.getElementById('playerSum');
 let botSumBox = document.getElementById('botSum');
 let winBox = document.getElementById('win');
@@ -71,7 +77,7 @@ let statusBox = document.getElementById('status');
 let playerBox = document.getElementById('playerBox');
 let botBox = document.getElementById('botBox');
 
-
+//Define a function to make counters that count each round result.
 function makeCounter() {
     let i = 0;
     function counter() {
@@ -80,20 +86,24 @@ function makeCounter() {
     }
     return counter;
 }
-
+// Creat counters.
 var draw = makeCounter();
 var win = makeCounter();
 var lose = makeCounter();
 
-
+// Define hit function to choose how pick and show a card and calculate player score.
 function hit() {
+    // Pick card.
     let cardNo = Math.floor(Math.random()*13)+1;
+    // Choose card classes.
     let cardClass = Math.floor(Math.random()*4);
+    // Find picked card's src image address.
     let card = cards[cardClass][cardNo];
+    // Show card image.
     let cardImage = document.createElement('img');
     cardImage.src = card;
     playerBox.appendChild(cardImage);
-    console.log(card, cardNo, cardClass);
+    // Score calculation and determine player situation.
     switch (cardNo) {
         case 1:
             if (playerSum > 11) {
@@ -113,6 +123,7 @@ function hit() {
         case "بیشتر شد":
             break;
     }
+    // Show player situation in current round.
     if (playerSum <= 21) {
         playerSumBox.innerHTML = playerSum;
     }else {
@@ -125,7 +136,9 @@ function hit() {
 }
 
 
+// With Stand function bot runs to play.
 function stand() {
+    // it's 15 to prevent BUST bot every time. with change this number botAI decision will be change.
     while (botSum <= 15) {
         let cardNo = Math.floor(Math.random()*13)+1;
         let cardClass = Math.floor(Math.random()*4);
@@ -151,11 +164,13 @@ function stand() {
                 break;
         }
     }
+    // Show bot situation in current round.
     if (botSum > 21) {
         botSum = "بیشتر شد";
         botSumBox.style.color = 'red';
     }
     botSumBox.innerHTML = botSum;
+    // Decide who wins and add result in table.
     if (botSum === playerSum) {
         drawBox.innerHTML = draw();
         statusBox.innerHTML = "مساوی شدید"
@@ -175,6 +190,7 @@ function stand() {
 }
 
 
+// Set all boxes, variables and styles to first state to start new round.
 function deal() {
     botSumBox.innerHTML = 0;
     botSumBox.style.color = 'white';
@@ -184,12 +200,12 @@ function deal() {
     statusBox.style.color = 'white';
     playerSum = 0;
     botSum = 0;
-    //delete pictures
+    // Delete card pictures.
     playerBox.innerHTML = "";
     botBox.innerHTML = "";
 }
 
-
+// Reset the game for new game.
 function reset() {
     deal();
     winBox.innerHTML = 0;
