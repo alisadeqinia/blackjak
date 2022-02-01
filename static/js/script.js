@@ -120,6 +120,8 @@ function hit() {
         playerSumBox.innerHTML = playerSum;
         playerSumBox.style.color = "red";
     }
+    const hitSound = new Audio("static/sounds/swish.m4a");
+    hitSound.play();
 }
 
 
@@ -161,10 +163,14 @@ function stand() {
         winBox.innerHTML = win();
         statusBox.innerHTML = "شما بردی"
         statusBox.style.color = 'aqua';
+        const winSound = new Audio("static/sounds/cash.mp3");
+        winSound.play();
     }else {
         loseBox.innerHTML = lose();
         statusBox.innerHTML = "شما باختی"
         statusBox.style.color = 'red';
+        const loseSound = new Audio("static/sounds/aww.mp3");
+        loseSound.play();
     }
 }
 
