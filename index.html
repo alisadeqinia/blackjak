@@ -5,9 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="static/css/style.css">
+    <script src="static/js/sweetalert.min.js"></script>
+    <script src="static/js/cookie.js"></script>
     <title>BlackJak Challenge</title>
 </head>
-<body>
+<body onload="checkCookie()">
     <div class="gameTable">
         <h1>بازی مهیج بلک جک</h1>
         <h2>نتیجه این دست: <span  id="status">نامشخص</span></h2>
