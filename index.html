@@ -10,6 +10,14 @@
     <title>BlackJak Challenge</title>
 </head>
 <body onload="checkCookie()">
+    <div class="hint">
+        <input type="checkbox" id="hint-toggle">
+        <label for="hint-toggle" class="hint-btn">؟</label>
+        <div class="overlay">
+            <p>اینجا راهنمای بازی رو میذاریم!</p>
+            <label for="hint-toggle" class="close-btn">بستن</label>
+        </div>
+    </div>
     <div class="gameTable">
         <h1>بازی مهیج بلک جک</h1>
         <h2>نتیجه این دست: <span  id="status">نامشخص</span></h2>
