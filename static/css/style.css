@@ -15,6 +15,10 @@ h1, h2, h3 {
     text-align: center;
     margin: 0;
 }
+/* some css for popup alert (sweet alert content) */
+.firstSwal input {
+    color: black;
+}
 /* ====================================== */
 /* game hint */
 .hint {
@@ -51,16 +55,22 @@ h1, h2, h3 {
     width: 100vw;
     height: 100vh;
     pointer-events: visible;
-    background-color: rgba(10, 10, 10, .8);
+    background-color: rgba(10, 10, 10, .95);
     transition: .3s;
 }
 .hint .overlay p {
     justify-self: center;
     font-size: 20px;
+    direction: rtl;
+    width: 60%;
+    height: 65%;
+    overflow-y: auto;
+    text-justify: distribute;
+    line-height: 2;
 }
 .hint .overlay .close-btn {
     position: absolute;
-    bottom: 30px;
+    bottom: 25px;
     left: 50%;
     transform: translateX(-50%);
     display: block;
@@ -72,6 +82,7 @@ h1, h2, h3 {
     height: 50px;
     margin-top: 300px;
     cursor: pointer;
+    border: 1px solid white;
 }
 .hint #hint-toggle:checked ~ .overlay {
     display: flex;

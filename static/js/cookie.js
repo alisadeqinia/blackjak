@@ -34,6 +34,7 @@ function checkCookie() {
       swal("اسمت چیه؟", {
         content: "input",
         closeOnClickOutside: false,
+        className: 'firstSwal'
       })
       .then((value) => {
         swal(`خوش اومدی ${value}`);
